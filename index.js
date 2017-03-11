@@ -25,7 +25,7 @@ const defaultOptions = {
  */
 function parse(value, options = {}) {
 	options = (options instanceof Object) ? options : {};
-	options = Object.assign(options, defaultOptions);
+	options = Object.assign({}, defaultOptions, options);
 
 	const QUOTE = options.quote === 'single' ? '\'' : '\"';
 	const SEPARATOR = options.separator === 'comma' ? ', ' : ' ';
@@ -47,10 +47,12 @@ function parse(value, options = {}) {
 			return 'null';
 
 		if (value instanceof Array || value instanceof Set)
-			return Array
-				.from(value)
-				.map(value => parse(value, options))
-				.join(SEPARATOR);
+			return `(${
+				Array
+					.from(value)
+					.map(value => parse(value, options))
+					.join(SEPARATOR)
+				})`;
 
 		if (value instanceof Object)
 			return `(${
@@ -58,7 +60,7 @@ function parse(value, options = {}) {
 					.keys(value)
 					.map(key => `${key}: ${parse(value[key], options)}`)
 					.join(SEPARATOR)
-			})`;
+				})`;
 	}
 }
 

@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/VitorLuizC/parse-sass-value#readme",
   "dependencies": {
-    "is": "^3.2.1",
     "is-color": "^0.2.0",
     "is-css-length": "^0.1.0"
   },
