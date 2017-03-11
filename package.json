@@ -1,0 +1,32 @@
+{
+  "name": "parse-sass-value",
+  "version": "1.0.0",
+  "description": "Simple value parser, from JavaScript to SASS (Scss).",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/VitorLuizC/parse-sass-value.git"
+  },
+  "keywords": [
+    "sass",
+    "parser"
+  ],
+  "author": "Vitor Luiz Cavalcanti <vitorluizc@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VitorLuizC/parse-sass-value/issues"
+  },
+  "homepage": "https://github.com/VitorLuizC/parse-sass-value#readme",
+  "dependencies": {
+    "is": "^3.2.1",
+    "is-color": "^0.2.0",
+    "is-css-length": "^0.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
