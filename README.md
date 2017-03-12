@@ -1,5 +1,6 @@
 # parse-sass-value
-[Travis](https://travis-ci.org/VitorLuizC/parse-sass-value.svg?branch=master)
+![Travis](https://travis-ci.org/VitorLuizC/parse-sass-value.svg?branch=master)
+
 Simple value parser, from JavaScript to SASS (Scss).
 
 # Usage
