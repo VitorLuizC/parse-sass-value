@@ -48,21 +48,30 @@ const gulp = require('gulp');
 const header = require('gulp-header');
 const parseValue = require('parse-sass-value');
 const sass = require('gulp-sass');
-
-function vars(object) {
-  return Object
+const vars = object => header(
+  Object
     .keys(object)
     .map(key => `$${key}: ${parseValue(object[key])};`)
     .join('\n');
-};
+);
 
 gulp.task('compile', () => {
-  gulp.src('./src/sass/*.scss')
-    .pipe(header(vars({
-      theme: 'blue'
-    })))
+  let settings = {
+    theme: 'default',
+    parent: null,
+    colors: {
+      primary: 'rgb(255, 0, 0)',
+      borders: '#ff0'
+    },
+    cols: 12,
+    breakpoints: ['544px', '768px', '1024px', '1366px']
+  };
+
+  return gulp
+    .src('./src/sass/*.scss')
+    .pipe(vars(settings, { quotes: 'single' }))
     .pipe(sass())
-    .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest('./dist/css'));
 });
 ```
 

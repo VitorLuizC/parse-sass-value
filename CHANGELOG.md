@@ -1,6 +1,9 @@
 # parse-sass-vars changelog
 
 ## 1.1.0
+- better workaround with gulp example.
+
+## 1.1.0
 - escapes quotes on string values;
 - test escape quotes.
 
