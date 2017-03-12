@@ -1,5 +1,9 @@
 # parse-sass-vars changelog
 
+## 1.1.0
+- escapes quotes on string values;
+- test escape quotes.
+
 ## 1.0.0
 
 - parses numbers, booleans and null to they equivalent;

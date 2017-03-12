@@ -36,7 +36,7 @@ function parse(value, options = {}) {
 	if (typeof value === 'string') {
 		if (isColor(value) || isLength(value))
 			return value;
-		return `${QUOTE}${value}${QUOTE}`;
+		return `${QUOTE}${value.replace(/\'/g, '\\\'').replace(/\"/g, '\"')}${QUOTE}`;
 	}
 
 	if (typeof value === 'number' || typeof value === 'boolean')

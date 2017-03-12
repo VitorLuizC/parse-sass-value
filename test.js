@@ -33,6 +33,11 @@ describe('parse-sass-value module test', () => {
 		assert.equal(parse('color-theme'), '\'color-theme\'');
 	});
 
+	it('escape quotes', () => {
+		assert.equal(parse('"Open Sans"'), '\'\"Open Sans\"\'');
+		assert.equal(parse('\'Open Sans\''), '\'\\\'Open Sans\\\'\'');
+	});
+
 	it('parses unit values without quotes', () => {
 		assert.equal(parse('100px'), '100px');
 		assert.equal(parse('10%'), '10%');
