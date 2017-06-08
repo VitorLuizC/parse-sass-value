@@ -34,7 +34,7 @@ describe('parse-sass-value module test', () => {
 	});
 
 	it('escape quotes', () => {
-		assert.equal(parse('"Open Sans"'), '\'\"Open Sans\"\'');
+		assert.equal(parse('"Open Sans"'), '\'\\\"Open Sans\\\"\'');
 		assert.equal(parse('\'Open Sans\''), '\'\\\'Open Sans\\\'\'');
 	});
 
@@ -50,13 +50,13 @@ describe('parse-sass-value module test', () => {
 		assert.equal(parse('rgb(0,0,0)'), 'rgb(0,0,0)');
 	});
 
-	it('parses maps & arrays to lists', () => {
+	it('parses sets & arrays to lists', () => {
 		assert.equal(parse([1, 2]), '(1, 2)');
 		assert.equal(parse(new Set([12, 12, 15])), '(12, 15)');
 	});
 
 	it('parses objects to maps', () => {
-		assert.equal(parse({a: 1, b: 2}), '(a: 1, b: 2)');
+		assert.equal(parse({a: 1, b: 2}), '(\'a\': 1, \'b\': 2)');
 	});
 
 	describe('options', () => {
@@ -66,7 +66,7 @@ describe('parse-sass-value module test', () => {
 		});
 
 		it('separator define list and map separator', () => {
-			assert.equal(parse({a: 'a', b: 'b'}, { separator: 'comma' }), '(a: \'a\', b: \'b\')');
+			assert.equal(parse({a: 'a', b: 'b'}, { separator: 'comma' }), '(\'a\': \'a\', \'b\': \'b\')');
 			assert.equal(parse(['10px', '20px'], { separator: 'space' }), '(10px 20px)');
 		});
 	});

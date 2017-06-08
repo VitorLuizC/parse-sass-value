@@ -9,13 +9,18 @@ const isLength = require('is-css-length');
  */
 
 /**
- * Default parse options.
- * @type {Options}
+ * Parse SASS string.
+ * @param {string} text
+ * @param {string} quote
+ * @returns {string}
  */
-const defaultOptions = {
-	quote: 'single',
-	separator: 'comma'
-};
+function parseString(text, quote) {
+	const QUOTE = quote === 'single' ? '\'' : '\"';
+
+	const textEscaped = text.replace(/\'/g, '\\\'').replace(/\"/g, '\\\"');
+
+	return `${QUOTE}${textEscaped}${QUOTE}`;
+}
 
 /**
  * Parse to SASS value.
@@ -23,20 +28,13 @@ const defaultOptions = {
  * @param {Options} [options]
  * @returns {string}
  */
-function parse(value, options = {}) {
-	options = (options instanceof Object) ? options : {};
-	options = Object.assign({}, defaultOptions, options);
-
-	const QUOTE = options.quote === 'single' ? '\'' : '\"';
-	const SEPARATOR = options.separator === 'comma' ? ', ' : ' ';
-
-	if (typeof value === 'function' || typeof value === 'undefined' || typeof value === 'symbol')
-		throw new Error(`SASS doesn't support "${typeof value}" values.`);
+function parse(value, { quote = 'single', separator = 'comma' } = {}) {
+	const SEPARATOR = separator === 'comma' ? ', ' : ' ';
 
 	if (typeof value === 'string') {
 		if (isColor(value) || isLength(value))
 			return value;
-		return `${QUOTE}${value.replace(/\'/g, '\\\'').replace(/\"/g, '\"')}${QUOTE}`;
+		return parseString(value, quote);
 	}
 
 	if (typeof value === 'number' || typeof value === 'boolean')
@@ -50,18 +48,25 @@ function parse(value, options = {}) {
 			return `(${
 				Array
 					.from(value)
-					.map(value => parse(value, options))
+					.map(value => parse(value, { quote, separator }))
 					.join(SEPARATOR)
 				})`;
 
-		if (value instanceof Object)
-			return `(${
-				Object
-					.keys(value)
-					.map(key => `${key}: ${parse(value[key], options)}`)
-					.join(SEPARATOR)
-				})`;
+		if (value instanceof Object) {
+			const createPair = key => {
+				const val = value[key];
+				const options = { quote, separator };
+				const pair = `${parseString(key, quote)}: ${parse(val, options)}`;
+				return pair;
+			};
+
+			const map = Object.keys(value).map(createPair).join(SEPARATOR)
+
+			return `(${map})`;
+		}
 	}
+
+	throw new Error(`Can't parse "${typeof value}" values.`);
 }
 
 module.exports = parse;
