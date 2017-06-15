@@ -1,4 +1,6 @@
 # parse-sass-value
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/VitorLuizC/parse-sass-value.svg)](https://greenkeeper.io/)
 ![Travis](https://travis-ci.org/VitorLuizC/parse-sass-value.svg?branch=master)
 
 Simple value parser, from JavaScript to SASS (Scss).
