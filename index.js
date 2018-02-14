@@ -1,5 +1,5 @@
-const isColor = require('is-color');
-const isLength = require('is-css-length');
+const isColor = require('is-color')
+const isLength = require('is-css-length')
 
 /**
  * @typedef Options
@@ -14,12 +14,12 @@ const isLength = require('is-css-length');
  * @param {string} quote
  * @returns {string}
  */
-function parseString(text, quote) {
-  const QUOTE = quote === 'single' ? '\'' : '\"';
+function parseString (text, quote) {
+  const QUOTE = quote === 'single' ? '\'' : '"'
 
-  const textEscaped = text.replace(/\'/g, '\\\'').replace(/\"/g, '\\\"');
+  const textEscaped = text.replace(/'/g, '\\\'').replace(/"/g, '\\"')
 
-  return `${QUOTE}${textEscaped}${QUOTE}`;
+  return `${QUOTE}${textEscaped}${QUOTE}`
 }
 
 /**
@@ -28,45 +28,46 @@ function parseString(text, quote) {
  * @param {Options} [options]
  * @returns {string}
  */
-function parse(value, { quote = 'single', separator = 'comma' } = {}) {
-  const SEPARATOR = separator === 'comma' ? ', ' : ' ';
+function parse (value, { quote = 'single', separator = 'comma' } = {}) {
+  const SEPARATOR = separator === 'comma' ? ', ' : ' '
 
   if (typeof value === 'string') {
-    if (isColor(value) || isLength(value))
-      return value;
-    return parseString(value, quote);
+    if (isColor(value) || isLength(value)) {
+      return value
+    }
+
+    return parseString(value, quote)
   }
 
-  if (typeof value === 'number' || typeof value === 'boolean')
-    return value.toString();
+  if (typeof value === 'number' || typeof value === 'boolean') {
+    return value.toString()
+  }
 
   if (typeof value === 'object') {
-    if (value === null)
-      return 'null';
+    if (value === null) {
+      return 'null'
+    }
 
-    if (value instanceof Array || value instanceof Set)
-      return `(${
-        Array
-          .from(value)
-          .map(value => parse(value, { quote, separator }))
-          .join(SEPARATOR)
-        })`;
+    if (value instanceof Array || value instanceof Set) {
+      const list = Array.from(value, value => parse(value, { quote, separator }))
+      return `(${list.join(SEPARATOR)})`
+    }
 
     if (value instanceof Object) {
       const createPair = key => {
-        const val = value[key];
-        const options = { quote, separator };
-        const pair = `${parseString(key, quote)}: ${parse(val, options)}`;
-        return pair;
-      };
+        const val = value[key]
+        const options = { quote, separator }
+        const pair = `${parseString(key, quote)}: ${parse(val, options)}`
+        return pair
+      }
 
       const map = Object.keys(value).map(createPair).join(SEPARATOR)
 
-      return `(${map})`;
+      return `(${map})`
     }
   }
 
-  throw new Error(`Can't parse "${typeof value}" values.`);
+  throw new Error(`Can't parse "${typeof value}" values.`)
 }
 
-module.exports = parse;
+module.exports = parse
