@@ -1,0 +1,5 @@
+# Handle all files as text
+* text=auto
+
+# Enforce Unix line-endings
+* eol=lf
