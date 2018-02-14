@@ -2,10 +2,5 @@
 node_modules
 
 # Log files
-npm-debug.log
-npm-debug.log.*
-debug.log
 *.log
-
-# VS Code settings folder
-.vscode
+*.log.*
