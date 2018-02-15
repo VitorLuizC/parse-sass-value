@@ -1,3 +1,5 @@
+import entries from 'object.entries'
+import toArray from 'array-from'
 import parse, { ParseOptions } from './index'
 import getQuote, { QuoteOption } from './quote'
 import getSeparator from './separator'
@@ -21,14 +23,14 @@ const createPairMapper = (options: ParseOptions) => {
 
 const toMap = (values: object, options: ParseOptions): string => {
   const separator = getSeparator('comma')
-  const pairs = Object.entries(values).map(createPairMapper(options))
+  const pairs = entries(values).map(createPairMapper(options))
   const map = `(${pairs.join(separator)})`
   return map
 }
 
 const toList = (values: ArrayLike<any>, options: ParseOptions): string => {
   const separator = getSeparator(options.separator)
-  const items = Array.from(values, (value) => parse(value, options))
+  const items = toArray(values, (value) => parse(value, options))
   const list = `(${items.join(separator)})`
   return list
 }
