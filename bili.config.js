@@ -3,7 +3,9 @@ const typescript = require('rollup-plugin-typescript')
 
 const namedExports = {
   'is-color': [ 'default' ],
-  'is-css-length': [ 'default' ]
+  'is-css-length': [ 'default' ],
+  'array-from': [ 'default' ],
+  'object.entries': [ 'default' ]
 }
 
 module.exports = {

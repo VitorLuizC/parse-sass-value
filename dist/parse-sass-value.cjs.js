@@ -4,6 +4,8 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var isColor = _interopDefault(require('is-color'));
 var isLength = _interopDefault(require('is-css-length'));
+var entries = _interopDefault(require('object.entries'));
+var toArray = _interopDefault(require('array-from'));
 
 var DEFAULT_QUOTE = 'single';
 var DEFAULT_SEPARATOR = 'comma';
@@ -56,13 +58,13 @@ var createPairMapper = function (options) {
 };
 var toMap = function (values, options) {
     var separator = getSeparator('comma');
-    var pairs = Object.entries(values).map(createPairMapper(options));
+    var pairs = entries(values).map(createPairMapper(options));
     var map = "(" + (pairs.join(separator)) + ")";
     return map;
 };
 var toList = function (values, options) {
     var separator = getSeparator(options.separator);
-    var items = Array.from(values, function (value) { return parse(value, options); });
+    var items = toArray(values, function (value) { return parse(value, options); });
     var list = "(" + (items.join(separator)) + ")";
     return list;
 };
