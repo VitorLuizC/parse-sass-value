@@ -67,7 +67,7 @@ describe('parse-sass-value module test', () => {
     })
 
     it('separator define list and map separator', () => {
-      assert.equal(parse({a: 'a', b: 'b'}, { separator: 'comma' }), '(\'a\': \'a\', \'b\': \'b\')')
+      assert.equal(parse(['10px', '20px'], { separator: 'comma' }), '(10px, 20px)')
       assert.equal(parse(['10px', '20px'], { separator: 'space' }), '(10px 20px)')
     })
   })
