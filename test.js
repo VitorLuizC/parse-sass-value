@@ -52,9 +52,8 @@ describe('parse-sass-value module test', () => {
     assert.equal(parse('rgb(0,0,0)'), 'rgb(0,0,0)')
   })
 
-  it('parses sets & arrays to lists', () => {
+  it('parses arrays to lists', () => {
     assert.equal(parse([1, 2]), '(1, 2)')
-    assert.equal(parse(new Set([12, 12, 15])), '(12, 15)')
   })
 
   it('parses objects to maps', () => {

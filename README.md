@@ -2,8 +2,6 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/VitorLuizC/parse-sass-value.svg)](https://greenkeeper.io/)
 [![Travis](https://travis-ci.org/VitorLuizC/parse-sass-value.svg?branch=master)](https://travis-ci.org/VitorLuizC/parse-sass-value)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
 
 Simple value parser, from JavaScript to SASS (Scss).
 

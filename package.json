@@ -2,10 +2,13 @@
   "name": "parse-sass-value",
   "version": "1.1.2",
   "description": "Simple value parser, from JavaScript to SASS (Scss).",
-  "main": "index.js",
+  "main": "dist/parse-sass-value.cjs.js",
+  "module": "dist/parse-sass-value.es.js",
   "scripts": {
     "lint": "standard",
-    "test": "npm run lint && mocha"
+    "test": "mocha",
+    "build": "bili",
+    "prepare": "npm run build && npm run test"
   },
   "repository": {
     "type": "git",
@@ -21,13 +24,21 @@
     "url": "https://github.com/VitorLuizC/parse-sass-value/issues"
   },
   "homepage": "https://github.com/VitorLuizC/parse-sass-value#readme",
+  "standard": {
+    "ignore": [
+      "dist/"
+    ]
+  },
   "dependencies": {
     "is-color": "^0.2.0",
     "is-css-length": "^0.1.0"
   },
   "devDependencies": {
+    "bili": "^2.2.7",
     "chai": "^4.0.2",
     "mocha": "^4.0.0",
-    "standard": "^10.0.3"
+    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-typescript": "^0.8.1",
+    "typescript": "^2.7.1"
   }
 }
