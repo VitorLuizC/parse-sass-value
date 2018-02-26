@@ -36,7 +36,7 @@
     "object.entries": "^1.0.4"
   },
   "devDependencies": {
-    "bili": "^2.2.7",
+    "bili": "^3.0.0",
     "chai": "^4.0.2",
     "mocha": "^4.0.0",
     "rollup-plugin-commonjs": "^8.3.0",
