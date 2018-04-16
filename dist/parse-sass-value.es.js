@@ -1,3 +1,9 @@
+/*!
+ * parse-sass-value v2.1.0
+ * © 2017-present Vitor Luiz Cavalcanti <vitorluizc@outlook.com>
+ * Released under the MIT License.
+ */
+
 import entries from 'object.entries';
 import toArray from 'array-from';
 import isColor from 'is-color';

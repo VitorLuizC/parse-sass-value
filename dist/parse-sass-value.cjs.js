@@ -1,3 +1,9 @@
+/*!
+ * parse-sass-value v2.1.0
+ * © 2017-present Vitor Luiz Cavalcanti <vitorluizc@outlook.com>
+ * Released under the MIT License.
+ */
+
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
