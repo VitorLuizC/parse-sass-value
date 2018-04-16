@@ -1,9 +1,15 @@
 {
   "name": "parse-sass-value",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Simple value parser, from JavaScript to SASS (Scss).",
   "main": "dist/parse-sass-value.cjs.js",
+  "types": "dist/parse-sass-value.d.ts",
   "module": "dist/parse-sass-value.es.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "lint": "standard",
     "test": "mocha",
@@ -31,16 +37,16 @@
   },
   "dependencies": {
     "array-from": "^2.1.1",
-    "is-color": "^0.2.0",
+    "is-color": "^1.0.0",
     "is-css-length": "^0.1.0",
     "object.entries": "^1.0.4"
   },
   "devDependencies": {
-    "bili": "^2.2.7",
+    "@types/is-color": "^1.0.0",
+    "bili": "^3.1.0",
     "chai": "^4.1.2",
-    "mocha": "^5.0.1",
-    "rollup-plugin-commonjs": "^9.0.0",
-    "rollup-plugin-typescript": "^0.8.1",
-    "typescript": "^2.7.2"
+    "mocha": "^5.1.0",
+    "rollup-plugin-typescript2": "^0.13.0",
+    "typescript": "^2.8.1"
   }
 }

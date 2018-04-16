@@ -1,22 +1,11 @@
-const commonJS = require('rollup-plugin-commonjs')
-const typescript = require('rollup-plugin-typescript')
-
-const namedExports = {
-  'is-color': [ 'default' ],
-  'is-css-length': [ 'default' ],
-  'array-from': [ 'default' ],
-  'object.entries': [ 'default' ]
-}
+const pkg = require('./package')
+const typescript = require('rollup-plugin-typescript2')
 
 module.exports = {
   input: 'src/index.ts',
-  format: [ 'cjs', 'es' ],
+  formats: [ 'cjs', 'es' ],
   plugins: [
-    commonJS({ namedExports }),
-    typescript({
-      typescript: require('typescript'),
-      declaration: true
-    })
+    typescript(),
   ],
-  external: Object.keys(namedExports),
+  external: Object.keys(pkg.dependencies)
 }
