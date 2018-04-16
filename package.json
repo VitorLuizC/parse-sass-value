@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "lint": "standard",
-    "test": "mocha",
+    "test": "ava",
     "build": "bili",
     "prepare": "npm run build && npm run test"
   },
@@ -43,9 +43,8 @@
   },
   "devDependencies": {
     "@types/is-color": "^1.0.0",
+    "ava": "^0.25.0",
     "bili": "^3.1.0",
-    "chai": "^4.1.2",
-    "mocha": "^5.1.0",
     "rollup-plugin-typescript2": "^0.13.0",
     "typescript": "^2.8.1"
   }
