@@ -10,6 +10,7 @@
 
     // Type-check configuration
     "noEmit": true,
+    "skipLibCheck": true,
     "alwaysStrict": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
