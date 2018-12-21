@@ -1,114 +1,76 @@
 /*!
  * parse-sass-value v2.1.0
- * © 2017-present Vitor Luiz Cavalcanti <vitorluizc@outlook.com>
+ * (c) 2018-present Vitor Luiz Cavalcanti <vitorluizc@outlook.com>
  * Released under the MIT License.
  */
-
-import entries from 'object.entries';
-import toArray from 'array-from';
 import isColor from 'is-color';
 import isLength from 'is-css-length';
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
 
 var DEFAULT_QUOTE = 'single';
 var DEFAULT_SEPARATOR = 'comma';
 var DEFAULT_OPTIONS = {
-  quote: DEFAULT_QUOTE,
-  separator: DEFAULT_SEPARATOR
+    quote: DEFAULT_QUOTE,
+    separator: DEFAULT_SEPARATOR
 };
 
 var quotes = Object.freeze({
-  none: '',
-  single: '\'',
-  double: '\"'
+    none: '',
+    single: '\'',
+    double: '\"',
 });
-
-var getQuote = function getQuote(option) {
-  if (option === void 0) {
-    option = DEFAULT_QUOTE;
-  }
-
-  var quote = quotes[option];
-  if (quote === undefined) throw new Error("Invalid quote option \"" + option + "\".");
-  return quote;
+var getQuote = function (option) {
+    if (option === void 0) { option = DEFAULT_QUOTE; }
+    var quote = quotes[option];
+    if (quote === undefined)
+        throw new Error("Invalid quote option \"" + option + "\".");
+    return quote;
 };
 
 var separators = Object.freeze({
-  comma: ', ',
-  space: ' '
+    comma: ', ',
+    space: ' ',
 });
-
-var getSeparator = function getSeparator(option) {
-  if (option === void 0) {
-    option = DEFAULT_SEPARATOR;
-  }
-
-  var separator = separators[option];
-  if (separator === undefined) throw new Error("Invalid separator option \"" + option + "\".");
-  return separator;
+var getSeparator = function (option) {
+    if (option === void 0) { option = DEFAULT_SEPARATOR; }
+    var separator = separators[option];
+    if (separator === undefined)
+        throw new Error("Invalid separator option \"" + option + "\".");
+    return separator;
 };
 
-var toString = function toString(value, options) {
-  var quote = getQuote(options.quote);
-  var string = quote + value.replace(/('|")/g, '\\$1') + quote;
-  return string;
+var toString = function (value, options) {
+    var quote = getQuote(options.quote);
+    return quote + value.replace(/('|")/g, '\\$1') + quote;
 };
-
-var toCompatible = function toCompatible(value) {
-  return '' + value;
+var toCompatible = function (value) { return '' + value; };
+var toMap = function (values, options) {
+    var separator = getSeparator('comma');
+    var pairs = Object.keys(values).map(function (property) {
+        var key = toString(property, options);
+        var value = parse(values[property], options);
+        return key + ": " + value;
+    });
+    return "(" + pairs.join(separator) + ")";
 };
-
-var createPairMapper = function createPairMapper(options) {
-  return function (_a) {
-    var property = _a[0],
-        value = _a[1];
-    var key = toString(property, options);
-    var val = parse(value, options);
-    var pair = key + ": " + val;
-    return pair;
-  };
-};
-
-var toMap = function toMap(values, options) {
-  var separator = getSeparator('comma');
-  var pairs = entries(values).map(createPairMapper(options));
-  var map = "(" + pairs.join(separator) + ")";
-  return map;
-};
-
-var toList = function toList(values, options) {
-  var separator = getSeparator(options.separator);
-  var items = toArray(values, function (value) {
-    return parse(value, options);
-  });
-  var list = "(" + items.join(separator) + ")";
-  return list;
+var toList = function (values, options) {
+    var separator = getSeparator(options.separator);
+    var items = Array.prototype.map.call(values, function (value) { return parse(value, options); });
+    return "(" + items.join(separator) + ")";
 };
 
 var parse = (function (value, options) {
-  if (options === void 0) {
-    options = DEFAULT_OPTIONS;
-  }
-
-  if (typeof value === 'string' && (isColor(value) || isLength(value))) return value;
-  if (typeof value === 'string') return toString(value, options);
-  if (typeof value === 'number' || typeof value === 'boolean' || value === null) return toCompatible(value);
-  if (value && _typeof(value) === 'object' && value.length) return toList(value, options);
-  if (value && _typeof(value) === 'object') return toMap(value, options);
-  throw new Error("Can't parse value \"" + value + "\".");
+    if (options === void 0) { options = DEFAULT_OPTIONS; }
+    if (typeof value === 'string' && (isColor(value) || isLength(value)))
+        return value;
+    if (typeof value === 'string')
+        return toString(value, options);
+    if (typeof value === 'number' || typeof value === 'boolean' || value === null)
+        return toCompatible(value);
+    if (value && typeof value === 'object' && value.length)
+        return toList(value, options);
+    if (value && typeof value === 'object')
+        return toMap(value, options);
+    throw new Error("Can't parse value \"" + value + "\".");
 });
 
 export default parse;

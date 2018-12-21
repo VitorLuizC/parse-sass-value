@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "lint": "standard",
-    "test": "ava",
-    "build": "bili",
+    "test": "tsc && ava",
+    "build": "tsc && bili src/index.ts --format es,cjs --banner --typescript2.clean",
     "prepare": "npm run build && npm run test"
   },
   "repository": {
@@ -36,10 +36,8 @@
     ]
   },
   "dependencies": {
-    "array-from": "^2.1.1",
     "is-color": "^1.0.2",
-    "is-css-length": "^0.2.0",
-    "object.entries": "^1.0.4"
+    "is-css-length": "^0.2.0"
   },
   "devDependencies": {
     "@types/is-color": "^1.0.0",

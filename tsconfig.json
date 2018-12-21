@@ -1,8 +1,22 @@
 {
   "compilerOptions": {
-    "lib": [ "es2018" ],
-    "module": "es2015",
+    "lib": [ "es2015" ],
     "target": "es5",
-    "allowSyntheticDefaultImports": true
+
+    // Module configuration
+    "module": "es2015",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+
+    // Type-check configuration
+    "noEmit": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

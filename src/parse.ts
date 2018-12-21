@@ -1,38 +1,28 @@
-import entries from 'object.entries'
-import toArray from 'array-from'
 import parse, { ParseOptions } from './index'
-import getQuote, { QuoteOption } from './quote'
+import getQuote from './quote'
 import getSeparator from './separator'
 
 const toString = (value: string, options: ParseOptions): string => {
   const quote = getQuote(options.quote)
-  const string = quote + value.replace(/('|")/g, '\\$1') + quote
-  return string
+  return quote + value.replace(/('|")/g, '\\$1') + quote
 }
 
 const toCompatible = (value: number | boolean | null): string => '' + value
 
-const createPairMapper = (options: ParseOptions) => {
-  return ([ property, value ]: [ string, any ]): string => {
-    const key = toString(property, options)
-    const val = parse(value, options)
-    const pair = `${key}: ${val}`
-    return pair
-  }
-}
-
-const toMap = (values: object, options: ParseOptions): string => {
+const toMap = (values: { [property: string]: any; }, options: ParseOptions): string => {
   const separator = getSeparator('comma')
-  const pairs = entries(values).map(createPairMapper(options))
-  const map = `(${pairs.join(separator)})`
-  return map
+  const pairs = Object.keys(values).map((property) => {
+    const key = toString(property, options)
+    const value = parse(values[property], options)
+    return `${key}: ${value}`
+  })
+  return `(${pairs.join(separator)})`
 }
 
 const toList = (values: ArrayLike<any>, options: ParseOptions): string => {
   const separator = getSeparator(options.separator)
-  const items = toArray(values, (value) => parse(value, options))
-  const list = `(${items.join(separator)})`
-  return list
+  const items = Array.prototype.map.call(values, (value: any) => parse(value, options))
+  return `(${items.join(separator)})`
 }
 
 export { toMap, toList, toString, toCompatible }
