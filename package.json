@@ -1,6 +1,6 @@
 {
   "name": "parse-sass-value",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Simple value parser, from JavaScript to SASS (Scss).",
   "main": "dist/parse-sass-value.cjs.js",
   "types": "dist/parse-sass-value.d.ts",
