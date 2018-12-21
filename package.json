@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "lint": "standard",
-    "test": "tsc && ava",
-    "build": "tsc && bili src/index.ts --format es,cjs --banner --typescript2.clean",
+    "test": "ava test.ts",
+    "build": "bili src/index.ts --format es,cjs --banner --typescript2.clean",
     "prepare": "npm run build && npm run test"
   },
   "repository": {
@@ -44,6 +44,16 @@
     "ava": "^1.0.1",
     "bili": "^3.4.2",
     "rollup-plugin-typescript2": "^0.18.1",
+    "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   }
 }

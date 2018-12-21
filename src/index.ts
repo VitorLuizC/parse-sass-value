@@ -6,8 +6,8 @@ import { SeparatorOption } from './separator'
 import { DEFAULT_OPTIONS } from './defaults'
 
 export type ParseOptions = {
-  quote: QuoteOption,
-  separator: SeparatorOption
+  quote?: QuoteOption,
+  separator?: SeparatorOption
 }
 
 export default (value: any, options: ParseOptions = DEFAULT_OPTIONS): string => {
