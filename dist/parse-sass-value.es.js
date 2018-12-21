@@ -1,5 +1,5 @@
 /*!
- * parse-sass-value v2.2.0
+ * parse-sass-value v2.3.0
  * (c) 2018-present Vitor Luiz Cavalcanti <vitorluizc@outlook.com>
  * Released under the MIT License.
  */
