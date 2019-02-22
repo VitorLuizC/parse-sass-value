@@ -42,7 +42,7 @@
   "devDependencies": {
     "@types/is-color": "^1.0.0",
     "ava": "^1.0.1",
-    "bili": "^3.4.2",
+    "bili": "^4.3.0",
     "rollup-plugin-typescript2": "^0.18.1",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
