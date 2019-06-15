@@ -44,7 +44,7 @@
     "ava": "^2.0.0",
     "bili": "^3.4.2",
     "rollup-plugin-typescript2": "^0.21.1",
-    "ts-node": "^8.0.3",
+    "ts-node": "8.2.0",
     "typescript": "^3.2.2"
   },
   "ava": {
