@@ -43,7 +43,7 @@
     "@types/is-color": "^1.0.0",
     "ava": "^2.0.0",
     "bili": "^3.4.2",
-    "rollup-plugin-typescript2": "^0.22.1",
+    "rollup-plugin-typescript2": "^0.24.1",
     "ts-node": "^8.0.3",
     "typescript": "^3.2.2"
   },
